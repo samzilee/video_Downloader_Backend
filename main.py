@@ -1,6 +1,7 @@
 from fastapi import FastAPI, Request, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from yt_dlp import YoutubeDL
+import shutil
 
 app = FastAPI()
 
@@ -13,6 +14,7 @@ app.add_middleware(
 
 @app.post("/")
 async def get_all_video_formats(request: Request):
+    shutil.copyfile("cookies.txt", "/tmp/cookies.txt")
     data = await request.json()
     video_url = data.get("url")
 
@@ -21,7 +23,7 @@ async def get_all_video_formats(request: Request):
 
     ydl_opts = {
         "quiet": True,
-        "cookiefile": "cookies.txt",  # optional
+        "cookiefile": "/tmp/cookies.txt",  # ✅ use cookies
     }
 
     try:
