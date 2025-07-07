@@ -24,6 +24,10 @@ async def get_all_video_formats(request: Request):
     ydl_opts = {
         "quiet": True,
         "cookiefile": "/tmp/cookies.txt",  # ✅ use cookies
+        "noplaylist": True,
+        "cachedir": False,
+        "sleep_interval_requests": 3,
+        "no_check_certificate": True,
     }
 
     try:
