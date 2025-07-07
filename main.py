@@ -11,7 +11,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.post("/download")
+@app.post("/")
 async def get_all_video_formats(request: Request):
     data = await request.json()
     video_url = data.get("url")
